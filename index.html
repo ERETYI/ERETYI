@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0e131b">
+<title>乐刷刷</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="manifest" href="manifest.json">
+<style>
+/* 隐藏平台自动添加的弹窗和水印 */
+[class*="watermark"], [class*="dialog"], [class*="modal"],
+[class*="toast"], [id*="watermark"], [id*="dialog"],
+[id*="modal"], [class*="generated"], [id*="generated"] {
+    display: none !important;
+}
+</style>
+</head>
+<body>
+
+<!-- 主内容区 -->
+<main id="app">
+
+  <!-- 首页 -->
+  <section class="page active" id="page-home">
+    <div class="hero">
+      <p class="slogan" id="home-slogan">认识自己的无知就是最大的智慧。</p>
+    </div>
+    <div class="stat-row">
+      <div class="stat-chip"><span id="stat-banks">2</span> 套题库</div>
+      <div class="stat-chip"><span id="stat-questions">0</span> 道题</div>
+      <div class="stat-chip"><span id="stat-wrong">0</span> 道错题</div>
+    </div>
+    <div id="bank-cards"></div>
+  </section>
+
+  <!-- 配置页 -->
+  <section class="page" id="page-config">
+    <div class="page-header">
+      <button class="back-btn" onclick="window.__app.goHome()">‹ 返回</button>
+      <h2 id="config-title">题库配置</h2>
+    </div>
+    <div id="config-body"></div>
+  </section>
+
+  <!-- 答题页 -->
+  <section class="page" id="page-quiz">
+    <div class="page-header">
+      <button class="back-btn" onclick="window.__app.quizBack()">‹ 退出</button>
+      <h2>答题中</h2>
+    </div>
+    <div class="quiz-progress">
+      <span id="quiz-progress-text">1/10</span>
+      <div class="progress-bar"><div class="progress-fill" id="quiz-progress-fill"></div></div>
+    </div>
+    <div id="quiz-body"></div>
+  </section>
+
+  <!-- 结果页 -->
+  <section class="page" id="page-result">
+    <div class="page-header">
+      <button class="back-btn" onclick="window.__app.goHome()">‹ 返回</button>
+      <h2>考试结果</h2>
+    </div>
+    <div id="result-body"></div>
+  </section>
+
+  <!-- 错题本 -->
+  <section class="page" id="page-wrong">
+    <div class="page-header">
+      <button class="back-btn" onclick="window.__app.goHome()">‹ 返回</button>
+      <h2>错题本</h2>
+    </div>
+    <div class="wrong-tabs">
+      <button class="wrong-tab active" data-wtab="practice">训练错题</button>
+      <button class="wrong-tab" data-wtab="exam">模拟考试</button>
+    </div>
+    <div id="wrong-body"></div>
+  </section>
+
+  <!-- 题库管理 -->
+  <section class="page" id="page-manage">
+    <div class="page-header">
+      <button class="back-btn" onclick="window.__app.goHome()">‹ 返回</button>
+      <h2>题库管理</h2>
+    </div>
+    <div id="manage-body"></div>
+  </section>
+
+  <!-- 设置 -->
+  <section class="page" id="page-settings">
+    <div class="page-header">
+      <button class="back-btn" onclick="window.__app.goHome()">‹ 返回</button>
+      <h2>设置</h2>
+    </div>
+    <div id="settings-body"></div>
+  </section>
+
+  <!-- 参考资料 -->
+  <section class="page" id="page-ref">
+    <div class="page-header">
+      <button class="back-btn" onclick="window.__app.goHome()">‹ 返回</button>
+      <h2 id="ref-title">参考资料</h2>
+    </div>
+    <div id="ref-body" class="ref-body"></div>
+  </section>
+
+</main>
+
+<!-- 底部导航栏 -->
+<nav class="bottomnav" id="bottomnav">
+  <button class="nav-btn active" data-nav="home">
+    <span class="nav-icon">🏠</span><span>首页</span>
+  </button>
+  <button class="nav-btn" data-nav="wrong">
+    <span class="nav-icon">📕</span><span>错题本</span>
+  </button>
+  <button class="nav-btn" data-nav="manage">
+    <span class="nav-icon">📚</span><span>题库</span>
+  </button>
+  <button class="nav-btn" data-nav="settings">
+    <span class="nav-icon">⚙️</span><span>设置</span>
+  </button>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="js/bank-auto.js"></script>
+<script src="js/bank-ev.js"></script>
+<script src="js/ref-newhouse.js"></script>
+<script src="js/app.js"></script>
+<script>
+// 自动隐藏平台弹窗
+function hidePlatformPopups() {
+    // 移除所有可能的平台弹窗
+    const selectors = [
+        '[class*="watermark"]', '[class*="dialog"]', '[class*="modal"]',
+        '[class*="toast"]', '[id*="watermark"]', '[id*="dialog"]',
+        '[id*="modal"]', '[class*="generated"]', '[id*="generated"]',
+        '[class*="doubao"]', '[id*="doubao"]', '[class*="platform"]'
+    ];
+    selectors.forEach(sel => {
+        document.querySelectorAll(sel).forEach(el => el.remove());
+    });
+}
+// 页面加载后执行，并且定时检查
+window.addEventListener('load', () => {
+    hidePlatformPopups();
+    setInterval(hidePlatformPopups, 1000);
+});
+</script>
+</body>
+</html>
