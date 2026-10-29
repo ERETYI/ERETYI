@@ -1,4 +1,4 @@
-const CACHE = 'zhuanben-v2';
+const CACHE = 'zhuanben-v3';
 const ASSETS = [
   './',
   './index.html',

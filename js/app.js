@@ -10,6 +10,7 @@ var STORAGE_WRONG = 'zhuanben_wrongbook_v1';
 var STORAGE_EDITS = 'zhuanben_bank_edits_v1';
 var STORAGE_EXAM = 'zhuanben_exam_history_v1';
 var STORAGE_THEME = 'zhuanben_theme_v1';
+var APP_VERSION = '8.9';
 
 // ---------- 题库元数据 ----------
 var BANKS = {
@@ -2089,7 +2090,8 @@ function renderSettings() {
         '2. 题库内容来源于公开资料整理，如有侵权请联系删除。<br>' +
         '3. 使用者应自行核对题目和答案的正确性，本软件不对因使用本软件造成的任何损失承担责任。<br>' +
         '4. 本软件不收集任何用户数据，所有数据仅保存在本地设备。' +
-      '</div></div>';
+      '</div>' +
+      '<div class="text2" style="margin-top:8px;opacity:.7;">版本 v' + APP_VERSION + '</div></div>';
 }
 
 // 深色/浅色模式切换
